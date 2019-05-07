@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-        adminId = getIntent().getExtras().getInt("ADMIN_ID");
+        adminId = getIntent().getExtras().getInt("USER_ID");
 
         if (savedInstanceState == null) {
             Fragment fragment = null;

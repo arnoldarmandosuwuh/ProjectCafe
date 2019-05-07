@@ -68,8 +68,10 @@ public class LoginActivity extends AppCompatActivity {
                                 etUsername.setText("");
                                 etPassword.setText("");
                             }
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("USER_ID", Integer.valueOf(jsonResponse.getString("data")));
+                            startActivity(intent);
                             Toast.makeText(LoginActivity.this, status + " : " + message, Toast.LENGTH_LONG).show();
-
                         } catch (JSONException e) {
                             Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                         }
