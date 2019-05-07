@@ -36,22 +36,30 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean isValidInput() {
 
         if (name.length() < 6) {
-            Toast.makeText(this, "Nama minimal 6 karakter", Toast.LENGTH_SHORT).show();
+            etName.setError("Nama minimal 6 karakter");
+            etName.requestFocus();
+//            Toast.makeText(this, "Nama minimal 6 karakter", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (username.length() < 8) {
-            Toast.makeText(this, "Username minimal 8 karakter", Toast.LENGTH_SHORT).show();
+            etUsername.setError("Username minimal 8 karakter");
+            etUsername.requestFocus();
+  //          Toast.makeText(this, "Username minimal 8 karakter", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (password.length() < 8) {
-            Toast.makeText(this, "Password minimal 8 karakter", Toast.LENGTH_SHORT).show();
+            etPassword.setError("Password minimal 8 karakter");
+            etPassword.requestFocus();
+    //        Toast.makeText(this, "Password minimal 8 karakter", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (!password.equals(confirmPassword)) {
-            Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show();
+            etConfirmPassword.setError("Password tidak sama");
+            etConfirmPassword.requestFocus();
+      //      Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -79,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
                 confirmPassword = etConfirmPassword.getText().toString();
-                String url = "http://10.212.2.206:8080/ProjectCafe/registrasi.php";
+                String url = "http://192.168.8.100:8080/ProjectCafe/registrasi.php";
                 if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 

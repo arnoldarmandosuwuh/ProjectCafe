@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="50dp"
     tools:context=".PembayaranFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
 
         <TextView
             android:id="@+id/tvMeja"
@@ -258,6 +260,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Member"
+                android:checked="true"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -340,10 +343,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="50dp"
+            android:background="@drawable/bg_button"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="Submit"
-            android:textSize="28sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etBayar" />
