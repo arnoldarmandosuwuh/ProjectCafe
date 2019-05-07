@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PembayaranFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvMeja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="No.Meja"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etMeja"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:ems="10"
+            android:hint="No Meja"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvMeja"
+            app:layout_constraintStart_toEndOf="@+id/tvMeja" />
+
+        <TextView
+            android:id="@+id/tvMakan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Menu Makanan"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMeja" />
+
+        <TextView
+            android:id="@+id/tvNasgor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:text="Nasi Goreng"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMakan" />
+
+        <EditText
+            android:id="@+id/etJmlNasgor"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvHargaNasgor"
+            app:layout_constraintStart_toEndOf="@+id/tvHargaNasgor" />
+
+        <TextView
+            android:id="@+id/tvHargaNasgor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:text="Rp. 10.000"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvNasgor"
+            app:layout_constraintStart_toEndOf="@+id/tvNasgor" />
+
+        <TextView
+            android:id="@+id/tvMie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Mie Goreng"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tvNasgor"
+            app:layout_constraintTop_toBottomOf="@+id/tvNasgor" />
+
+        <TextView
+            android:id="@+id/tvHargaMie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp. 10.000"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvMie"
+            app:layout_constraintStart_toStartOf="@+id/tvHargaNasgor" />
+
+        <EditText
+            android:id="@+id/etJmlMie"
+            android:layout_width="75dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvHargaMie"
+            app:layout_constraintStart_toStartOf="@+id/etJmlNasgor" />
+
+        <TextView
+            android:id="@+id/tvSoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Soto Ayam"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tvMie"
+            app:layout_constraintTop_toBottomOf="@+id/tvMie" />
+
+        <TextView
+            android:id="@+id/etHargaSoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp. 15.000"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvSoto"
+            app:layout_constraintStart_toStartOf="@+id/tvHargaMie" />
+
+        <EditText
+            android:id="@+id/etJmlSoto"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/etHargaSoto"
+            app:layout_constraintStart_toStartOf="@+id/etJmlMie" />
+
+        <TextView
+            android:id="@+id/tvMinum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text=" Menu Minuman"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/tvMakan"
+            app:layout_constraintTop_toBottomOf="@+id/tvSoto" />
+
+        <TextView
+            android:id="@+id/tvGenderuwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Es Genderuwo"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tvSoto"
+            app:layout_constraintTop_toBottomOf="@+id/tvMinum" />
+
+        <TextView
+            android:id="@+id/tvHargaGenderuwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp. 8.000"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvGenderuwo"
+            app:layout_constraintStart_toStartOf="@+id/etHargaSoto" />
+
+        <EditText
+            android:id="@+id/etJmlGenderuwo"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvHargaGenderuwo"
+            app:layout_constraintStart_toStartOf="@+id/etJmlSoto" />
+
+        <TextView
+            android:id="@+id/tvPocong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Es Pocong"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tvGenderuwo"
+            app:layout_constraintTop_toBottomOf="@+id/tvGenderuwo" />
+
+        <TextView
+            android:id="@+id/tvHargaPocong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp. 6.000"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvPocong"
+            app:layout_constraintStart_toStartOf="@+id/tvHargaGenderuwo" />
+
+        <EditText
+            android:id="@+id/etJmlPocong"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvHargaPocong"
+            app:layout_constraintStart_toStartOf="@+id/etJmlGenderuwo" />
+
+        <TextView
+            android:id="@+id/tvKopi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Kopi Tuyul"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tvPocong"
+            app:layout_constraintTop_toBottomOf="@+id/tvPocong" />
+
+        <TextView
+            android:id="@+id/tvHargaKopi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp. 5.000"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvKopi"
+            app:layout_constraintStart_toStartOf="@+id/tvHargaPocong" />
+
+        <EditText
+            android:id="@+id/etJmlKopi"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvKopi"
+            app:layout_constraintStart_toStartOf="@+id/etJmlPocong" />
+
+        <TextView
+            android:id="@+id/tvPembayaran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Pembayaran"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/tvMinum"
+            app:layout_constraintTop_toBottomOf="@+id/tvKopi" />
+
+        <RadioGroup
+            android:id="@+id/rgBayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/tvPembayaran"
+            app:layout_constraintTop_toBottomOf="@+id/tvPembayaran">
+
+            <RadioButton
+                android:id="@+id/rbMember"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Member"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RadioButton
+                android:id="@+id/rbNonMember"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Non Member"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rbMember" />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tvDiskon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Diskon"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/tvPembayaran"
+            app:layout_constraintTop_toBottomOf="@+id/rgBayar" />
+
+        <TextView
+            android:id="@+id/tvJmlDiskon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%"
+            android:textSize="24sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvDiskon"
+            app:layout_constraintStart_toStartOf="@+id/tvHargaKopi" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Total"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/tvDiskon"
+            app:layout_constraintTop_toBottomOf="@+id/tvDiskon" />
+
+        <TextView
+            android:id="@+id/tvSubTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp."
+            android:textSize="24sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvTotal"
+            app:layout_constraintStart_toStartOf="@+id/tvJmlDiskon" />
+
+        <TextView
+            android:id="@+id/tvBayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Bayar"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/tvTotal"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
+
+        <EditText
+            android:id="@+id/etBayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvBayar"
+            app:layout_constraintStart_toStartOf="@+id/tvSubTotal" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Submit"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etBayar" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</ScrollView>
