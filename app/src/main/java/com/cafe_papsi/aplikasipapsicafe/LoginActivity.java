@@ -19,7 +19,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.PrivateKey;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,9 +37,19 @@ public class LoginActivity extends AppCompatActivity {
             etUsername.requestFocus();
             return false;
         }
+        if (username.isEmpty()) {
+            etUsername.setError("Username tidak boleh kosong");
+            etUsername.requestFocus();
+            return false;
+        }
 
         if (password.length() < 8) {
             etPassword.setError("Password minimal 8 karakter");
+            etPassword.requestFocus();
+            return false;
+        }
+        if (password.isEmpty()) {
+            etPassword.setError("Password tidak boleh kosong");
             etPassword.requestFocus();
             return false;
         }
@@ -75,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
 
-                String url = "http://192.168.8.100:8080/ProjectCafe/login.php";
+                String url = "http://projectcafe.000webhostapp.com/login.php";
                 if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override

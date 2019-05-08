@@ -8,21 +8,50 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.cafe_papsi.aplikasipapsicafe.utils.SharedPrefManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 
+public class PembayaranFragment extends Fragment {
 
+    private Button btnSubmit, btnBayar;
+    private TextView tvDiskon, tvSubTotal, tvSubTotalBayar;
+    RadioGroup radioGroup;
+    private EditText etMeja, etJmlNasgor, etJmlMie, etJmlSoto, etJmlGenderuwo, etJmlPocong, etJmlKopi,etBayar ;
+    private double nasgor, mie, soto, genderuwo, pocong, kopi, diskon = 0, total = 0, subTotal = 0;
+    private String noMeja, idUser;
+    private int kembalian, bayar;
+    private RequestQueue queue;
+    SharedPrefManager sharedPrefManager;
 
-public class PembayaranFragment extends Fragment  {
+    NumberFormat formatter = new DecimalFormat("#,###");
 
-    private Button btnSubmit;
-    private TextView tvDiskon, tvSubTotal, tvHargaNasgor, tvHargaMie, tvHargaSoto, tvHargaGenderuwo, tvHargaPocong, tvHargaKopi, tvBayar;
-    private RadioButton rbMember, rbNonMember;
-    private EditText etMeja, etJmlNasgor, etJmlMie, etJmlSoto, etJmlGenderuwo, etJmlPocong, etJmlKopi;
-    private int nasgor, mie, soto, genderuwo, pocong, kopi, bayar = 0;
-    private double diskon = 0;
+    private boolean isValidInput() {
+        if (noMeja.isEmpty()) {
+            etMeja.setError("Nomor meja tidak boleh kosong");
+            etMeja.requestFocus();
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +63,10 @@ public class PembayaranFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pembayaran, container, false);
+        sharedPrefManager = new SharedPrefManager(getContext());
+        idUser = String.valueOf(sharedPrefManager.getSPId());
+
+        queue = Volley.newRequestQueue(getContext());
 
         etMeja = view.findViewById(R.id.etMeja);
         etJmlNasgor = view.findViewById(R.id.etJmlNasgor);
@@ -42,43 +75,108 @@ public class PembayaranFragment extends Fragment  {
         etJmlGenderuwo = view.findViewById(R.id.etJmlGenderuwo);
         etJmlPocong = view.findViewById(R.id.etJmlPocong);
         etJmlKopi = view.findViewById(R.id.etJmlKopi);
+        etBayar  = view.findViewById(R.id.etBayar);
+        radioGroup = view.findViewById(R.id.rgBayar);
         tvSubTotal = view.findViewById(R.id.tvSubTotal);
-        btnSubmit = view.findViewById(R.id.btnSubmit);
         tvDiskon = view.findViewById(R.id.tvJmlDiskon);
-
-
+        tvSubTotalBayar = view.findViewById(R.id.tvSubTotalBayar);
+        btnSubmit = view.findViewById(R.id.btnSubmit);
+        btnBayar = view.findViewById(R.id.btnBayar);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!etJmlNasgor.getText().toString().isEmpty()) {
                     nasgor = Integer.valueOf(etJmlNasgor.getText().toString());
-                    bayar += nasgor * 10000; }
+                    total += nasgor * 10000;
+                }
                 if (!etJmlMie.getText().toString().isEmpty()) {
                     mie = Integer.valueOf(etJmlMie.getText().toString());
-                    bayar += mie * 10000;}
+                    total += mie * 10000;
+                }
                 if (!etJmlSoto.getText().toString().isEmpty()) {
                     soto = Integer.valueOf(etJmlSoto.getText().toString());
-                    bayar += soto * 15000;}
+                    bayar += soto * 15000;
+                }
                 if (!etJmlGenderuwo.getText().toString().isEmpty()) {
                     genderuwo = Integer.valueOf(etJmlGenderuwo.getText().toString());
-                    bayar += genderuwo * 8000;}
+                    total += genderuwo * 8000;
+                }
                 if (!etJmlPocong.getText().toString().isEmpty()) {
                     pocong = Integer.valueOf(etJmlPocong.getText().toString());
-                    bayar += pocong * 6000;}
+                    total += pocong * 6000;
+                }
                 if (!etJmlKopi.getText().toString().isEmpty()) {
                     kopi = Integer.valueOf(etJmlKopi.getText().toString());
-                    bayar += nasgor * 5000;}
-//
-//                if(rbMember.isChecked()){
-//                    diskon = bayar * 10 / 100; }
-                 if (rbNonMember.isChecked()){
-                    diskon = 10;
+                    total += nasgor * 5000;
                 }
 
-                tvDiskon.setText("Rp." + diskon);
-//
-               tvSubTotal.setText("Rp." + bayar);
+                int statusTerpilih = radioGroup.getCheckedRadioButtonId();
+
+                if (statusTerpilih == R.id.rbMember) {
+                    diskon += total * 0.1;
+                } else if (statusTerpilih == R.id.rbNonMember) {
+                    diskon = 0;
+                }
+
+                subTotal = total - diskon;
+                tvDiskon.setText("Rp. " + formatter.format(diskon));
+                tvSubTotal.setText("Rp. " + formatter.format(total));
+                tvSubTotalBayar.setText("Rp. " +  formatter.format(subTotal));
+
+            }
+        });
+
+        btnBayar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                noMeja = etMeja.getText().toString();
+                bayar = Integer.valueOf(etBayar.getText().toString());
+                kembalian = bayar - (int) Math.round(subTotal);
+
+                String url = "http://projectcafe.000webhostapp.com/transaksi.php";
+                if (isValidInput()){
+                    StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                jsonResponse = new JSONObject(response);
+                                int status = jsonResponse.getInt("status");
+                                String message = jsonResponse.getString("message");
+                                if (status == 0) {
+                                    etMeja.setText("");
+                                }
+                                Toast.makeText(getContext(), status + " : " + message, Toast.LENGTH_LONG).show();
+                            } catch (JSONException e) {
+                                Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                            }
+
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getContext(), error.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }){
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<>();
+                            params.put("idUser", idUser);
+                            params.put("noMeja", noMeja);
+                            params.put("total", String.valueOf(subTotal));
+                            params.put("diskon", String.valueOf(diskon));
+
+                            return params;
+                        }
+                    };
+                }
+
+//                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+//                alertDialogBuilder.setMessage("Kembalian = " + kembalian);
+//                AlertDialog alertDialog = alertDialogBuilder.create();
+//                alertDialog.show();
 
             }
         });

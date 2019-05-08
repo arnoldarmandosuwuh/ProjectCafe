@@ -261,6 +261,7 @@
                 android:text="Member"
                 android:checked="true"
                 android:textSize="18sp"
+                android:buttonTint="@color/colorChecked"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <RadioButton
@@ -272,6 +273,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Non Member"
                 android:textSize="18sp"
+                android:buttonTint="@color/colorChecked"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rbMember" />
 
@@ -285,8 +287,8 @@
             android:layout_marginTop="32dp"
             android:text="Diskon"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/tvPembayaran"
-            app:layout_constraintTop_toBottomOf="@+id/rgBayar" />
+            app:layout_constraintStart_toStartOf="@+id/tvTotal"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
 
         <TextView
             android:id="@+id/tvJmlDiskon"
@@ -301,11 +303,13 @@
             android:id="@+id/tvTotal"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="32dp"
             android:text="Total"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/tvDiskon"
-            app:layout_constraintTop_toBottomOf="@+id/tvDiskon" />
+            app:layout_constraintStart_toStartOf="@+id/tvPembayaran"
+            app:layout_constraintTop_toBottomOf="@+id/rgBayar" />
 
         <TextView
             android:id="@+id/tvSubTotal"
@@ -314,7 +318,8 @@
             android:text="Rp."
             android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvTotal"
-            app:layout_constraintStart_toStartOf="@+id/tvJmlDiskon" />
+            app:layout_constraintStart_toStartOf="@+id/tvHargaKopi" />
+
 
         <TextView
             android:id="@+id/tvBayar"
@@ -323,8 +328,8 @@
             android:layout_marginTop="32dp"
             android:text="Bayar"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/tvTotal"
-            app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
+            app:layout_constraintStart_toStartOf="@+id/tvSubTot"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubTot" />
 
         <EditText
             android:id="@+id/etBayar"
@@ -333,22 +338,52 @@
             android:ems="10"
             android:inputType="number"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvBayar"
-            app:layout_constraintStart_toStartOf="@+id/tvSubTotal" />
+            app:layout_constraintStart_toStartOf="@+id/tvSubTotalBayar" />
 
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/bg_button"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Submit"
+            android:text="Order"
             android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etBayar" />
+
+        <TextView
+            android:id="@+id/tvSubTot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Sub Total"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/tvDiskon"
+            app:layout_constraintTop_toBottomOf="@+id/tvDiskon" />
+
+        <TextView
+            android:id="@+id/tvSubTotalBayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp."
+            android:textSize="24sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvSubTot"
+            app:layout_constraintStart_toStartOf="@+id/tvJmlDiskon" />
+
+        <Button
+            android:id="@+id/btnBayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/bg_button"
+            android:text="Bayar"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnSubmit"
+            tools:layout_editor_absoluteY="916dp" />
 
     </android.support.constraint.ConstraintLayout>
 

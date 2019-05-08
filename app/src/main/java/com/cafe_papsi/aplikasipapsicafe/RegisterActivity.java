@@ -38,28 +38,44 @@ public class RegisterActivity extends AppCompatActivity {
         if (name.length() < 6) {
             etName.setError("Nama minimal 6 karakter");
             etName.requestFocus();
-//            Toast.makeText(this, "Nama minimal 6 karakter", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (name.isEmpty()) {
+            etName.setError("Nama tidak boleh kosong");
+            etName.requestFocus();
             return false;
         }
 
         if (username.length() < 8) {
             etUsername.setError("Username minimal 8 karakter");
             etUsername.requestFocus();
-  //          Toast.makeText(this, "Username minimal 8 karakter", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (username.isEmpty()) {
+            etUsername.setError("Username tidak boleh kosong");
+            etUsername.requestFocus();
             return false;
         }
 
         if (password.length() < 8) {
             etPassword.setError("Password minimal 8 karakter");
             etPassword.requestFocus();
-    //        Toast.makeText(this, "Password minimal 8 karakter", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (password.isEmpty()) {
+            etPassword.setError("Password tidak boleh kosong");
+            etPassword.requestFocus();
             return false;
         }
 
         if (!password.equals(confirmPassword)) {
             etConfirmPassword.setError("Password tidak sama");
             etConfirmPassword.requestFocus();
-      //      Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (confirmPassword.isEmpty()) {
+            etPassword.setError("Confirm Password tidak boleh kosong");
+            etPassword.requestFocus();
             return false;
         }
 
@@ -87,14 +103,14 @@ public class RegisterActivity extends AppCompatActivity {
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
                 confirmPassword = etConfirmPassword.getText().toString();
-                String url = "http://192.168.8.100:8080/ProjectCafe/registrasi.php";
+                String url = "http://projectcafe.000webhostapp.com/registrasi.php";
                 if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
                         @Override
                         public void onResponse(String response) {
-                            JSONObject jsonResponse = null;
                             try {
+                                JSONObject jsonResponse = new JSONObject(response);
                                 jsonResponse = new JSONObject(response);
                                 int status = jsonResponse.getInt("status");
                                 String message = jsonResponse.getString("message");

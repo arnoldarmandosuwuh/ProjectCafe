@@ -18,8 +18,12 @@ import android.view.MenuItem;
 
 import com.cafe_papsi.aplikasipapsicafe.utils.SharedPrefManager;
 
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public String idUser;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +32,9 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SharedPrefManager sharedPrefManager;
         sharedPrefManager = new SharedPrefManager(this);
+
+        idUser = String.valueOf(sharedPrefManager.getSPId());
 
         if (!sharedPrefManager.getSPSudahLogin()){
             startActivity(new Intent(this, LoginActivity.class)
@@ -112,7 +117,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_logout) {
-            SharedPrefManager sharedPrefManager;
             sharedPrefManager = new SharedPrefManager(this);
 
             sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
