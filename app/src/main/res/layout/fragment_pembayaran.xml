@@ -294,7 +294,7 @@
             android:id="@+id/tvJmlDiskon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="%"
+            android:text="Rp. "
             android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvDiskon"
             app:layout_constraintStart_toStartOf="@+id/tvHargaKopi" />

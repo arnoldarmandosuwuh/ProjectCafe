@@ -37,10 +37,9 @@ public class PembayaranFragment extends Fragment {
     RadioGroup radioGroup;
     private EditText etMeja, etJmlNasgor, etJmlMie, etJmlSoto, etJmlGenderuwo, etJmlPocong, etJmlKopi,etBayar ;
     private double nasgor, mie, soto, genderuwo, pocong, kopi, diskon = 0, total = 0, subTotal = 0;
-    private String noMeja, idUser;
+    private String noMeja, idUser = "1";
     private int kembalian, bayar;
     private RequestQueue queue;
-    SharedPrefManager sharedPrefManager;
 
     NumberFormat formatter = new DecimalFormat("#,###");
 
@@ -63,8 +62,7 @@ public class PembayaranFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pembayaran, container, false);
-        sharedPrefManager = new SharedPrefManager(getContext());
-        idUser = String.valueOf(sharedPrefManager.getSPId());
+
 
         queue = Volley.newRequestQueue(getContext());
 
@@ -141,11 +139,20 @@ public class PembayaranFragment extends Fragment {
                         public void onResponse(String response) {
                             try {
                                 JSONObject jsonResponse = new JSONObject(response);
-                                jsonResponse = new JSONObject(response);
                                 int status = jsonResponse.getInt("status");
                                 String message = jsonResponse.getString("message");
                                 if (status == 0) {
                                     etMeja.setText("");
+                                    etJmlNasgor.setText("");
+                                    etJmlMie.setText("");
+                                    etJmlSoto.setText("");
+                                    etJmlGenderuwo.setText("");
+                                    etJmlPocong.setText("");
+                                    etJmlKopi.setText("");
+                                    etBayar.setText("");
+                                    tvDiskon.setText("Rp. ");
+                                    tvSubTotal.setText("Rp. ");
+                                    tvSubTotalBayar.setText("Rp. ");
                                 }
                                 Toast.makeText(getContext(), status + " : " + message, Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
@@ -165,18 +172,22 @@ public class PembayaranFragment extends Fragment {
                             Map<String, String> params = new HashMap<>();
                             params.put("idUser", idUser);
                             params.put("noMeja", noMeja);
-                            params.put("total", String.valueOf(subTotal));
-                            params.put("diskon", String.valueOf(diskon));
+                            params.put("total", String.valueOf(Math.round(subTotal)));
+                            params.put("diskon", String.valueOf(Math.round(diskon)));
 
                             return params;
                         }
                     };
+                    queue.add(request);
                 }
+                String pesan = "Order \n";
+                pesan += "Nomor Meja : " + noMeja + "\n";
+                pesan+= "Kembalian = " + kembalian;
 
-//                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-//                alertDialogBuilder.setMessage("Kembalian = " + kembalian);
-//                AlertDialog alertDialog = alertDialogBuilder.create();
-//                alertDialog.show();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                alertDialogBuilder.setMessage(pesan);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
 
             }
         });

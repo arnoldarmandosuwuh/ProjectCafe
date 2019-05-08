@@ -18,11 +18,9 @@ import android.view.MenuItem;
 
 import com.cafe_papsi.aplikasipapsicafe.utils.SharedPrefManager;
 
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public String idUser;
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity
 
         sharedPrefManager = new SharedPrefManager(this);
 
-        idUser = String.valueOf(sharedPrefManager.getSPId());
 
         if (!sharedPrefManager.getSPSudahLogin()){
             startActivity(new Intent(this, LoginActivity.class)
