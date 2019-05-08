@@ -1,5 +1,6 @@
 package com.cafe_papsi.aplikasipapsicafe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,9 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.cafe_papsi.aplikasipapsicafe.utils.SharedPrefManager;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public int adminId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        SharedPrefManager sharedPrefManager;
+        sharedPrefManager = new SharedPrefManager(this);
 
-        adminId = getIntent().getExtras().getInt("USER_ID");
+        if (!sharedPrefManager.getSPSudahLogin()){
+            startActivity(new Intent(this, LoginActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+        }
 
         if (savedInstanceState == null) {
             Fragment fragment = null;
@@ -103,7 +111,14 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
+            SharedPrefManager sharedPrefManager;
+            sharedPrefManager = new SharedPrefManager(this);
+
+            sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+            startActivity(new Intent(MainActivity.this, LoginActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
 
         }
 

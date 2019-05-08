@@ -23,6 +23,8 @@ import java.security.PrivateKey;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.cafe_papsi.aplikasipapsicafe.utils.SharedPrefManager;
+
 public class LoginActivity extends AppCompatActivity {
     private RequestQueue queue;
     private EditText etUsername, etPassword;
@@ -53,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
+
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.bLogin);
@@ -73,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                 password = etPassword.getText().toString();
 
                 String url = "http://192.168.8.100:8080/ProjectCafe/login.php";
-                if (isValidInput()){
+                if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -81,14 +84,23 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject jsonResponse = new JSONObject(response);
                                 int status = jsonResponse.getInt("status");
                                 String message = jsonResponse.getString("message");
+                                int id = jsonResponse.getInt("data");
 
                                 if (status == 0) {
                                     etUsername.setText("");
                                     etPassword.setText("");
                                 }
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                intent.putExtra("USER_ID", Integer.valueOf(jsonResponse.getString("data")));
-                                startActivity(intent);
+
+                                SharedPrefManager sharedPrefManager;
+                                sharedPrefManager = new SharedPrefManager(LoginActivity.this);
+
+                                sharedPrefManager.saveSPString(SharedPrefManager.SP_ID, String.valueOf(id));
+                                // Shared Pref ini berfungsi untuk menjadi trigger session login
+                                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class)
+                                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                finish();
+
 //                            Toast.makeText(LoginActivity.this, status + " : " + message, Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
                                 Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
