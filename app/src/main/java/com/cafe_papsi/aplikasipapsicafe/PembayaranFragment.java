@@ -35,11 +35,12 @@ public class PembayaranFragment extends Fragment {
     private Button btnSubmit, btnBayar;
     private TextView tvDiskon, tvSubTotal, tvSubTotalBayar;
     RadioGroup radioGroup;
-    private EditText etMeja, etJmlNasgor, etJmlMie, etJmlSoto, etJmlGenderuwo, etJmlPocong, etJmlKopi,etBayar ;
+    private EditText etMeja, etJmlNasgor, etJmlMie, etJmlSoto, etJmlGenderuwo, etJmlPocong, etJmlKopi, etBayar;
     private double nasgor, mie, soto, genderuwo, pocong, kopi, diskon = 0, total = 0, subTotal = 0;
-    private String noMeja, idUser = "1";
+    private String noMeja, idUser;
     private int kembalian, bayar;
     private RequestQueue queue;
+    SharedPrefManager sharedPrefManager;
 
     NumberFormat formatter = new DecimalFormat("#,###");
 
@@ -63,6 +64,8 @@ public class PembayaranFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pembayaran, container, false);
 
+        sharedPrefManager = new SharedPrefManager(getContext());
+        idUser = sharedPrefManager.getSPId();
 
         queue = Volley.newRequestQueue(getContext());
 
@@ -73,7 +76,7 @@ public class PembayaranFragment extends Fragment {
         etJmlGenderuwo = view.findViewById(R.id.etJmlGenderuwo);
         etJmlPocong = view.findViewById(R.id.etJmlPocong);
         etJmlKopi = view.findViewById(R.id.etJmlKopi);
-        etBayar  = view.findViewById(R.id.etBayar);
+        etBayar = view.findViewById(R.id.etBayar);
         radioGroup = view.findViewById(R.id.rgBayar);
         tvSubTotal = view.findViewById(R.id.tvSubTotal);
         tvDiskon = view.findViewById(R.id.tvJmlDiskon);
@@ -120,7 +123,7 @@ public class PembayaranFragment extends Fragment {
                 subTotal = total - diskon;
                 tvDiskon.setText("Rp. " + formatter.format(diskon));
                 tvSubTotal.setText("Rp. " + formatter.format(total));
-                tvSubTotalBayar.setText("Rp. " +  formatter.format(subTotal));
+                tvSubTotalBayar.setText("Rp. " + formatter.format(subTotal));
 
             }
         });
@@ -132,8 +135,9 @@ public class PembayaranFragment extends Fragment {
                 bayar = Integer.valueOf(etBayar.getText().toString());
                 kembalian = bayar - (int) Math.round(subTotal);
 
+
                 String url = "http://projectcafe.000webhostapp.com/transaksi.php";
-                if (isValidInput()){
+                if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -166,7 +170,7 @@ public class PembayaranFragment extends Fragment {
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(getContext(), error.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                         }
-                    }){
+                    }) {
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> params = new HashMap<>();
@@ -181,8 +185,9 @@ public class PembayaranFragment extends Fragment {
                     queue.add(request);
                 }
                 String pesan = "Order \n";
+                pesan += "Kasir ID : " + idUser + "\n";
                 pesan += "Nomor Meja : " + noMeja + "\n";
-                pesan+= "Kembalian = " + kembalian;
+                pesan += "Kembalian = " + kembalian;
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                 alertDialogBuilder.setMessage(pesan);

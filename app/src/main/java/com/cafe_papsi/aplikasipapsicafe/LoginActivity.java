@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etUsername, etPassword;
     private Button btnLogin, btnRegister;
     private String username, password;
+    SharedPrefManager sharedPrefManager;
 
     private boolean isValidInput() {
 
@@ -63,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         queue = Volley.newRequestQueue(this);
-
 
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
@@ -100,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                                     etPassword.setText("");
                                 }
 
-                                SharedPrefManager sharedPrefManager;
                                 sharedPrefManager = new SharedPrefManager(LoginActivity.this);
 
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_ID, String.valueOf(id));

@@ -34,8 +34,8 @@ public class SharedPrefManager {
         spEditor.commit();
     }
 
-    public int getSPId(){
-        return sp.getInt(SP_ID, -1);
+    public String getSPId(){
+        return sp.getString(SP_ID, "");
     }
 
     public boolean getSPSudahLogin(){
