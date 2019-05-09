@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.cafe_papsi.aplikasipapsicafe.utils.SharedPrefManager;
 
 
 /**
@@ -13,17 +16,24 @@ import android.view.ViewGroup;
  */
 public class BerandaFragment extends Fragment {
 
-
-    public BerandaFragment() {
-        // Required empty public constructor
-    }
-
+    TextView tvUser;
+    String idUser;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_beranda, container, false);
+        sharedPrefManager = new SharedPrefManager(getContext());
+
+        View view = inflater.inflate(R.layout.fragment_beranda, container, false);
+        tvUser = view.findViewById(R.id.tvUser);
+        idUser = sharedPrefManager.getSPNama();
+
+        tvUser.setText(idUser);
+
+        return view;
+
     }
 
 }

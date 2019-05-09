@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/papsicafe">
 
     <View
         android:id="@+id/view3"
@@ -44,7 +45,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:textSize="12sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/etConfirm"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toEndOf="@+id/guideline5"
@@ -56,7 +57,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:textSize="12sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/bRegister"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toEndOf="@+id/guideline5"
@@ -71,7 +72,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="12sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/etUsername"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -84,7 +85,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="12sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/etPassword"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toEndOf="@+id/guideline5"
@@ -122,7 +123,7 @@
         android:layout_height="wrap_content"
         android:text="Password"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/etPassword"
         app:layout_constraintStart_toStartOf="@+id/etPassword" />
 
@@ -132,7 +133,7 @@
         android:layout_height="wrap_content"
         android:text="Konfirmasi Password"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/etConfirm"
         app:layout_constraintStart_toStartOf="@+id/etConfirm" />
 
@@ -142,7 +143,7 @@
         android:layout_height="wrap_content"
         android:text="Username"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/etUsername"
         app:layout_constraintStart_toStartOf="@+id/etUsername" />
 
@@ -152,7 +153,7 @@
         android:layout_height="wrap_content"
         android:text="Nama"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/etName"
         app:layout_constraintStart_toStartOf="@+id/etName" />
 
