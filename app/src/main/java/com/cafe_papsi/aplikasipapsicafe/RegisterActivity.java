@@ -103,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
                 confirmPassword = etConfirmPassword.getText().toString();
-                String url = "http://projectcafe.000webhostapp.com/registrasi.php";
+                String url = "http://192.168.8.101:8080/ProjectCafe/registrasi.php";
                 if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
@@ -111,7 +111,6 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             try {
                                 JSONObject jsonResponse = new JSONObject(response);
-                                jsonResponse = new JSONObject(response);
                                 int status = jsonResponse.getInt("status");
                                 String message = jsonResponse.getString("message");
 
@@ -121,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     etPassword.setText("");
                                     etConfirmPassword.setText("");
                                 }
-                                Toast.makeText(RegisterActivity.this, status + " : " + message, Toast.LENGTH_LONG).show();
+                                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                                 onBackPressed();
                             } catch (JSONException e) {
                                 Toast.makeText(RegisterActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();

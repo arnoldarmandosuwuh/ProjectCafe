@@ -9,8 +9,8 @@
             android:icon="@drawable/pesan"
             android:title="Pemesanan" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_menu"
+            android:icon="@drawable/my_menu"
             android:title="Daftar Menu" />
         <item
             android:id="@+id/nav_slideshow"

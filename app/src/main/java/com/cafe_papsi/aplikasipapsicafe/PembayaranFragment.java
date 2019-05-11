@@ -136,7 +136,7 @@ public class PembayaranFragment extends Fragment {
                 kembalian = bayar - (int) Math.round(subTotal);
 
 
-                String url = "http://projectcafe.000webhostapp.com/transaksi.php";
+                String url = "http://192.168.8.101:8080/ProjectCafe/transaksi.php";
                 if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
@@ -158,7 +158,7 @@ public class PembayaranFragment extends Fragment {
                                     tvSubTotal.setText("Rp. ");
                                     tvSubTotalBayar.setText("Rp. ");
                                 }
-                                Toast.makeText(getContext(), status + " : " + message, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),  message, Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
                                 Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                             }

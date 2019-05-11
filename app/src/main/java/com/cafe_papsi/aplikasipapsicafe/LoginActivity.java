@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
 
-                String url = "http://projectcafe.000webhostapp.com/login.php";
+                String url = "http://192.168.8.101:8080/ProjectCafe/login.php";
                 if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
