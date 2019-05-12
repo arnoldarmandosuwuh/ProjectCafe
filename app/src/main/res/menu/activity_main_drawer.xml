@@ -7,24 +7,20 @@
         <item
             android:id="@+id/nav_pemesanan"
             android:icon="@drawable/pesan"
-            android:title="Pemesanan" />
+            android:title="Kasir" />
         <item
             android:id="@+id/nav_menu"
             android:icon="@drawable/my_menu"
             android:title="Daftar Menu" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Setting" />
-    </group>
+            android:id="@+id/nav_transaksi"
+            android:icon="@drawable/transaksi"
+            android:title="Transaksi" />
 
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/logout"
-                android:title="Logout" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
+    </group>
 
 </menu>

@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
 
-                String url = "http://192.168.8.101:8080/ProjectCafe/login.php";
+                String url = "http://192.168.8.100:8080/ProjectCafe/login.php";
                 if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String message = jsonResponse.getString("message");
                                 int id = jsonResponse.getInt("data");
                                 String nama = jsonResponse.getString("nama_user");
+                                String gambar = jsonResponse.getString("gambar_user");
 
                                 if (status == 0) {
                                     etUsername.setText("");
@@ -105,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_ID, String.valueOf(id));
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, nama);
+                                sharedPrefManager.saveSPString(SharedPrefManager.SP_GAMBAR, gambar);
                                 // Shared Pref ini berfungsi untuk menjadi trigger session login
                                 sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class)

@@ -103,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
                 confirmPassword = etConfirmPassword.getText().toString();
-                String url = "http://192.168.8.101:8080/ProjectCafe/registrasi.php";
+                String url = "http://192.168.8.100:8080/ProjectCafe/registrasi.php";
                 if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 

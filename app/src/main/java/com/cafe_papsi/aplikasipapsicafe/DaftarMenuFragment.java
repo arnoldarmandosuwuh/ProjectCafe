@@ -65,7 +65,7 @@ public class DaftarMenuFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        String url = "http://192.168.8.101:8080/ProjectCafe/ambil_menu.php";
+        String url = "http://192.168.8.100:8080/ProjectCafe/ambil_menu.php";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.cafe_papsi.aplikasipapsicafe.R;
 import com.cafe_papsi.aplikasipapsicafe.model.Menu;
+import com.cafe_papsi.aplikasipapsicafe.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -46,10 +47,10 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MenuViewHolder
         menuViewHolder.tvHargaMenu.setText("Rp. " + formatter.format(hargaMenu));
 
         if(!menu.getLinkGambar().trim().isEmpty()){
-            Picasso.get().load(menu.getLinkGambar()).into(menuViewHolder.ivMenu);
+            Picasso.get().load(menu.getLinkGambar()).transform(new CircleTransform()).into(menuViewHolder.ivMenu);
         }
         else {
-            Picasso.get().load(R.drawable.no_image).into(menuViewHolder.ivMenu);
+            Picasso.get().load(R.drawable.no_image).transform(new CircleTransform()).into(menuViewHolder.ivMenu);
         }
     }
 

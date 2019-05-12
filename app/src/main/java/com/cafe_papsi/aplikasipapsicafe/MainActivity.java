@@ -2,11 +2,8 @@ package com.cafe_papsi.aplikasipapsicafe;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,13 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.cafe_papsi.aplikasipapsicafe.utils.SharedPrefManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     SharedPrefManager sharedPrefManager;
+    public NavigationView navigationView;
+    public String idUser, namaUser, gambarUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +30,15 @@ public class MainActivity extends AppCompatActivity
 
         sharedPrefManager = new SharedPrefManager(this);
 
-
-        if (!sharedPrefManager.getSPSudahLogin()){
+        if (!sharedPrefManager.getSPSudahLogin()) {
             startActivity(new Intent(this, LoginActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
         }
+
+        idUser = sharedPrefManager.getSPId();
+        namaUser = sharedPrefManager.getSPNama();
+        gambarUser = sharedPrefManager.getSpGambar();
 
         if (savedInstanceState == null) {
             Fragment fragment = null;
@@ -58,8 +59,9 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -107,9 +109,8 @@ public class MainActivity extends AppCompatActivity
             c = PembayaranFragment.class;
         } else if (id == R.id.nav_menu) {
             c = DaftarMenuFragment.class;
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_transaksi) {
 
         } else if (id == R.id.nav_logout) {
             sharedPrefManager = new SharedPrefManager(this);
