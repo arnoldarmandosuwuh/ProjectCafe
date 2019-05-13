@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity
             c = DaftarMenuFragment.class;
 
         } else if (id == R.id.nav_transaksi) {
+            c = TransaksiFragment.class;
 
         } else if (id == R.id.nav_logout) {
             sharedPrefManager = new SharedPrefManager(this);
