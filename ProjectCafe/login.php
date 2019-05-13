@@ -14,6 +14,8 @@ if ($query->num_rows > 0) {
 	$result['status'] = 0;
 	$result['message'] = "Login sukses";
 	$result['data'] = $row['id'];
+	$result['nama_user'] = $row['nama'];
+	$result['gambar_user'] = $row['url_gambar'];
 } else {
 	$result['status'] = 1;
 	$result['message'] = "Login gagal";

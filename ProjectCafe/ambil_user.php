@@ -2,7 +2,9 @@
 
 include 'koneksi.php';
 
-$sql = "SELECT * FROM menu";
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM users WHERE id=$id";
 
 $query = $conn->query($sql);
 
@@ -10,12 +12,11 @@ $result = array();
 if ($query) {
 	$list = array();
 	while ($row = $query->fetch_assoc()) {
-		$menu = array();
-		$menu['id'] = $row['id'];
-		$menu['menu'] = $row['menu'];
-		$menu['harga'] = $row['harga'];
-		$menu['gambar'] = $row['link_gambar'];
-		array_push($list, $menu);
+		$users = array();
+		$users['id'] = $row['id'];
+		$users['nama'] = $row['nama'];
+		$users['gambar'] = $row['url_gambar'];
+		array_push($list, $users);
 	}
 	$result['status'] = 0;
 	$result['messagge'] = "Success";

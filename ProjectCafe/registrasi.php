@@ -4,9 +4,10 @@ include 'koneksi.php';
 $name = $_POST["name"];
 $username = $_POST["username"];
 $password = $_POST["password"];
+$link = $_POST["gambar"];
 
-$sql = "INSERT INTO users (nama, username, password, status)
-		VALUES ('$name', '$username', md5('$password'), 1)";
+$sql = "INSERT INTO users (nama, username, password, url_gambar)
+		VALUES ('$name', '$username', md5('$password'), '$link')";
 
 $result = array();
 
