@@ -66,7 +66,7 @@ public class TransaksiFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        String url = "http://192.168.8.100:8080/ProjectCafe/ambil_transaksi.php";
+        String url = "https://projectcafepapsi.000webhostapp.com/ambil_transaksi.php";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

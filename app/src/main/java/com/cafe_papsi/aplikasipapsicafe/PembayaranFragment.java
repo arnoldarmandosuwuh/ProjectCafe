@@ -137,7 +137,7 @@ public class PembayaranFragment extends Fragment {
                 kembalian = bayar - (int) Math.round(subTotal);
 
 
-                String url = "http://192.168.8.100:8080/ProjectCafe/transaksi.php";
+                String url = "https://projectcafepapsi.000webhostapp.com/transaksi.php";
                 if (isValidInput()) {
                     StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
