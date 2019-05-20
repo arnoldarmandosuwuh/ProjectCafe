@@ -1,8 +1,10 @@
 package com.cafe_papsi.aplikasipapsicafe;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +34,7 @@ import java.util.ArrayList;
  */
 public class DaftarMenuFragment extends Fragment {
 
+    private FloatingActionButton fab;
     private RequestQueue requestQueue;
     private ArrayList<Menu> listMenu;
     private RecyclerView rvMenu;
@@ -42,6 +45,14 @@ public class DaftarMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_daftar_menu, container, false);
+        fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentDetail = new Intent(getContext(), MenuActivity.class);
+                startActivity(intentDetail);
+            }
+        });
 
         rvMenu = view.findViewById(R.id.rvMenu);
         rvMenu.setAdapter(adapterMenu);
@@ -59,6 +70,7 @@ public class DaftarMenuFragment extends Fragment {
         listMenu = new ArrayList<>();
 
         adapterMenu = new AdapterMenu(getContext(), listMenu);
+
     }
 
     @Override
@@ -71,7 +83,7 @@ public class DaftarMenuFragment extends Fragment {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray  = new JSONArray(jsonObject.getString("data"));
+                    JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
 
                     listMenu.clear();
                     for (int i = 0; i < jsonArray.length(); i++){

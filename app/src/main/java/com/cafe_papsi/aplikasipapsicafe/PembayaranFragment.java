@@ -63,7 +63,7 @@ public class PembayaranFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_pembayaran, container, false);
+            View view = inflater.inflate(R.layout.fragment_pembayaran, container, false);
 
         sharedPrefManager = new SharedPrefManager(getContext());
         idUser = sharedPrefManager.getSPId();
@@ -188,7 +188,10 @@ public class PembayaranFragment extends Fragment {
                 String pesan = "Order \n";
                 pesan += "Kasir ID : " + idUser + "\n";
                 pesan += "Nomor Meja : " + noMeja + "\n";
-                pesan += "Kembalian = " + kembalian;
+                pesan += "Total : " + subTotal + "\n";
+                pesan += "Bayar : " + bayar + "\n";
+                pesan += "Kembalian = " + kembalian + "\n";
+                pesan += "Terima Kasih";
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                 alertDialogBuilder.setMessage(pesan);

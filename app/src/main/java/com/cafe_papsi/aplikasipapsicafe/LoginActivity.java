@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String message = jsonResponse.getString("message");
                                 int id = jsonResponse.getInt("data");
                                 String nama = jsonResponse.getString("nama_user");
-                                String gambar = jsonResponse.getString("gambar_user");
+//                                String gambar = jsonResponse.getString("gambar_user");
 
                                 if (status == 0) {
                                     etUsername.setText("");
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_ID, String.valueOf(id));
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, nama);
-                                sharedPrefManager.saveSPString(SharedPrefManager.SP_GAMBAR, gambar);
+//                                sharedPrefManager.saveSPString(SharedPrefManager.SP_GAMBAR, gambar);
                                 // Shared Pref ini berfungsi untuk menjadi trigger session login
                                 sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class)

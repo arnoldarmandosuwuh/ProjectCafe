@@ -8,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cafe_papsi.aplikasipapsicafe.R;
 import com.cafe_papsi.aplikasipapsicafe.model.Transaksi;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.TransaksiViewHolder> {
@@ -34,11 +37,13 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.Tran
     @Override
     public void onBindViewHolder(@NonNull TransaksiViewHolder transaksiViewHolder, int i) {
         Transaksi transaksi = listTransaksi.get(i);
+        NumberFormat formatter = new DecimalFormat("#,###");
 
-        transaksiViewHolder.tvTMeja.setText("Nomor Meja = " + transaksi.getNoMeja());
-        transaksiViewHolder.tvTTotal.setText("Total = Rp. " + transaksi.getTotal());
-        transaksiViewHolder.tvTDiskon.setText("Diskon = Rp. " + transaksi.getDiskon());
-        transaksiViewHolder.tvTglTransaksi.setText("Tanggal Transaksi = " + transaksi.getTglTransaksi());
+        int totalHarga = Integer.valueOf(transaksi.getTotal());
+
+        transaksiViewHolder.tvTMeja.setText("Nomor Meja : " + transaksi.getNoMeja());
+        transaksiViewHolder.tvTTotal.setText("Total : Rp." + formatter.format(totalHarga));
+        transaksiViewHolder.tvTglTransaksi.setText("Tanggal : " + transaksi.getTglTransaksi());
 
     }
 
@@ -49,14 +54,13 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.Tran
 
     class TransaksiViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView tvTMeja, tvTTotal, tvTDiskon, tvTglTransaksi;
+        TextView tvTMeja, tvTTotal, tvTglTransaksi;
 
         public TransaksiViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvTMeja = itemView.findViewById(R.id.tvTMeja);
             tvTTotal = itemView.findViewById(R.id.tvTTotal);
-            tvTDiskon = itemView.findViewById(R.id.tvTDiskon);
             tvTglTransaksi = itemView.findViewById(R.id.tvTglTransaksi);
 
             itemView.setOnClickListener(this);
@@ -64,7 +68,7 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.Tran
 
         @Override
         public void onClick(View v) {
-
+            Toast.makeText(context, "Transaksi : \n" + tvTMeja.getText().toString(), Toast.LENGTH_SHORT).show();
         }
     }
 }

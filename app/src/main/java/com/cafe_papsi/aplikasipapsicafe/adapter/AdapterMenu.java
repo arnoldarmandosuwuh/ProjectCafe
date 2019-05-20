@@ -1,6 +1,7 @@
 package com.cafe_papsi.aplikasipapsicafe.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cafe_papsi.aplikasipapsicafe.DetailMenuActivity;
 import com.cafe_papsi.aplikasipapsicafe.R;
 import com.cafe_papsi.aplikasipapsicafe.model.Menu;
 import com.cafe_papsi.aplikasipapsicafe.utils.CircleTransform;
@@ -67,14 +69,19 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MenuViewHolder
             super(itemView);
 
             ivMenu = itemView.findViewById(R.id.ivGambarMenu);
-            tvNamaMenu = itemView.findViewById(R.id.tvNamaMenu);
-            tvHargaMenu = itemView.findViewById(R.id.tvHargaMenu);
+            tvNamaMenu = itemView.findViewById(R.id.tvNM);
+            tvHargaMenu = itemView.findViewById(R.id.tvHM);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            Menu menu = listMenu.get(getAdapterPosition());
+
+            Intent intentDetail = new Intent(context, DetailMenuActivity.class);
+            intentDetail.putExtra("idMenu",menu.getId());
+            context.startActivity(intentDetail);
 
         }
     }

@@ -72,7 +72,6 @@ public class TransaksiFragment extends Fragment {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-
                     JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
 
                     listTransaksi.clear();
@@ -87,9 +86,8 @@ public class TransaksiFragment extends Fragment {
 
                         listTransaksi.add(new Transaksi(id, idUser, noMeja, total, diskon, tglTransaksi));
                     }
-
+                    adapterTransaksi.notifyDataSetChanged();
                 } catch (JSONException e) {
-                    e.printStackTrace();
                     Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
